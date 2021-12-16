@@ -1,0 +1,22 @@
+{
+	"jobtask_id":"",
+	"ledgers": [
+		{
+			"version":"1",
+			"classification":"idk",
+			"location_details":"/project/SAIL0000V/pedw_episode.csv",
+			"location":"csv",
+			"group_count":3,
+			"attributes": {
+				"targettablename":"test_{classification}_{version}",
+				"targetclassification":"testingclass"
+			}
+		}, {
+			"location_details":"/project/SAIL0000V/pedw_spell.csv"
+		}, {
+			"location_details":"/project/SAIL0000V/pedw_superspell.csv"
+		}
+	],
+	"project_code":"0000",
+	"rabbit_vhost":"thost"
+}

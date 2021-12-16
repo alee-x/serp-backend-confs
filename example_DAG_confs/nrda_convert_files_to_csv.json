@@ -1,0 +1,33 @@
+{
+	"rabbit_vhost":"thost",
+	"project_code": "0000",
+	"jobtask_id": "test_jobtaskid",
+	"ledger": {
+		"location_details":"/project/SAIL0000V/co3.dta",
+		"label":"test",
+		"version":1,
+		"group_count":2,
+		"id":"testingid",
+		"attributes": {
+			"file_type":"stata",
+			"targetclassification":"statatype"
+		}
+	}
+}
+
+{
+	"rabbit_vhost":"thost",
+	"project_code": "0000",
+	"jobtask_id": "test_jobtaskid",
+	"ledger": {
+		"location_details":"/project/SAIL0000V/survey.sav",
+		"label":"test",
+		"version":1,
+		"group_count":2,
+		"id":"testingid",
+		"attributes": {
+			"file_type":"spss",
+			"targetclassification":"spsstype"
+		}
+	}
+}

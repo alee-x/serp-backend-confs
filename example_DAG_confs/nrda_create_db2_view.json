@@ -1,0 +1,22 @@
+{
+	"rabbit_vhost":"thost",
+	"project_code": "0001",
+	"jobtask_id": "test_jobtaskid",
+	"ledgers": [
+		{
+			"location_details":"SAIL0000V.pedw_spell",
+			"label":"test",
+			"classification":"testv1",
+			"version":1,
+			"group_count":2,
+			"id":"testingid",
+			"attributes": {
+				"file_type":"spss",
+				"targettablename":"pedw_spell_{label}_{classification}_{version}",
+				"targetclassification":"testclass",
+				"mssql_database_schema":"0001"
+			}
+		}
+	]
+	
+}

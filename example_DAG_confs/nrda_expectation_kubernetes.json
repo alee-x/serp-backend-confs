@@ -1,0 +1,30 @@
+{
+    "dag_run_id": "test34",
+    "logical_date": "2021-11-19T15:55:00.386Z",
+    "conf": {
+        "project_code": "0000",
+        "bucket": "sail0000v",
+        "ledger": {
+            "attributes": {
+                "project": "0000",
+                "expectation_json_result": "",
+                "expectation_html_result": "",
+                "failexpectation": "failexpectation",
+                "schema": "",
+                "metrics": "",
+                "has_header": "true",
+                "delimiter": ","
+            },
+            "dataset_id": "pedw",
+            "label": "spell",
+            "classification": "demo",
+            "version": "121",
+            "group_count": "gcount",
+            "location": "s3",
+            "location_details": "s3a://sail0000v/pedw_spell.csv"
+        },
+        "rabbit_queue": "expectation",
+        "rabbit_vhost": "thost",
+        "jobtask_id": "0000"
+    }
+}

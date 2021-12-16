@@ -1,0 +1,16 @@
+{"ledger":{
+"attributes":{
+"target_label_name":"{label}_{classification}_{version}",
+"sqlcodeblock":"BEGIN SELECT TOP 10 * FROM SAIL0000V.WDSD_MAIN; END",
+ "ms_database_conn_id": "thecesspit",
+  "ms_database_name":"SAIL"
+},
+  "label":"testlabel",
+  "classification":"testclass",
+  "version":1,
+  "location_details":"testlocationdetails"
+},
+"project_code":"0000",
+"rabbit_vhost":"mssql_rmq",
+ "jobtask_id":"testjobtaskid"
+}

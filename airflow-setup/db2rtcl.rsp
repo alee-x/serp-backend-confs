@@ -1,0 +1,24 @@
+*-----------------------------------------------------
+* Generated response file used by the DB2 Setup wizard
+* generation time: 29/10/21 15:22
+*-----------------------------------------------------
+*  Product Installation 
+LIC_AGREEMENT       = ACCEPT
+PROD       = CLIENT
+FILE       = /opt/ibm/db2/V11.5
+INSTALL_TYPE       = TYPICAL
+* ----------------------------------------------
+*  Instance properties           
+* ----------------------------------------------
+INSTANCE       = inst1
+inst1.TYPE       = client
+*  Instance-owning user
+inst1.NAME       = airflow
+inst1.UID       = 50000
+inst1.GROUP_NAME       = root
+inst1.HOME_DIRECTORY       = /home/airflow
+inst1.AUTOSTART       = NO
+*-----------------------------------------------
+*  Installed Languages 
+*-----------------------------------------------
+LANG       = EN

@@ -1,0 +1,166 @@
+version: '3.7'
+
+# Settings and configurations that are common for all containers
+x-minio-common: &minio-common
+  image: quay.io/minio/minio:RELEASE.2021-09-24T00-24-24Z
+  command: server --console-address ":9001" http://minio{1...3}/data{1...2}
+  expose:
+    - "9000"
+    - "9001"
+  environment:
+    MINIO_ROOT_USER: "${POSTGRES_USER}"
+    MINIO_ROOT_PASSWORD: "${DB2INST1_PASSWORD}"
+    MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY}"
+    MINIO_SECRET_KEY: "${MINIO_SECRET_KEY}"
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+    interval: 30s
+    timeout: 20s
+    retries: 3
+
+x-resource-common:
+  &resource-common
+  deploy:
+    resources:
+      limits:
+        cpus: 0.50
+        memory: 256M
+
+# starts 3 docker containers running minio server instances.
+# using nginx reverse mproxy, load balancing, you can access
+# it through port 9000.
+services:
+  minio1:
+    <<: *minio-common
+    <<: *resource-common
+    hostname: minio1
+    volumes:
+      - data1-1:/data1
+      - data1-2:/data2
+
+  minio2:
+    <<: *minio-common
+    <<: *resource-common
+    hostname: minio2
+    volumes:
+      - data2-1:/data1
+      - data2-2:/data2
+
+  minio3:
+    <<: *minio-common
+    <<: *resource-common
+    hostname: minio3
+    volumes:
+      - data3-1:/data1
+      - data3-2:/data2
+
+  nginx:
+    <<: *resource-common
+    image: alleeex/serp-nginx:latest
+    hostname: nginx
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - "minio1"
+      - "minio2"
+      - "minio3"
+      # - "minio4"
+
+  create_buckets:
+    <<: *resource-common
+    image: alleeex/serp-minio-mb:latest
+    network_mode: host
+    depends_on:
+      - "minio1"
+      - "minio2"
+      - "minio3"
+      # - "minio4"
+    environment:
+      MINIO_ROOT_USER: "${POSTGRES_USER}"
+      MINIO_ROOT_PASSWORD: "${DB2INST1_PASSWORD}"
+    tty: true
+
+  rabbitmq:
+    <<: *resource-common
+    container_name: "rabbitmq"
+    # image: rabbitmq:3.8-management-alpine
+    image: alleeex/serp-rmq
+    privileged: true
+    environment:
+        RABBITMQ_DEFAULT_USER: "${RMQ_U}"
+        RABBITMQ_DEFAULT_PASS: "${RMQ_P}"
+        RABBITMQ_DEFAULT_VHOST: "${RMQ_VH}"
+    ports:
+        # AMQP protocol port
+        - '5672:5672'
+        # HTTP management UI
+        - '15672:15672'
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "5672"]
+      interval: 5s
+      timeout: 15s
+      retries: 20
+    restart: unless-stopped
+
+  # db2:
+  #   image: alleeex/serp-db2:latest
+  #   container_name: "db2"
+  #   privileged: true
+  #   ports:
+  #     - "50000:50000"
+  #     - "55000:55000"
+  #   environment:
+  #     DBNAME: "${DBNAME}"
+  #     DB2INST1_PASSWORD: "${DB2INST1_PASSWORD}"
+  #     LICENSE: "${LICENSE}"
+  #     DB2INSTANCE: "${DB2INSTANCE}"
+  #   volumes:
+  #     - db2inst1:/database
+  #   restart: unless-stopped
+
+  # mssql:
+  #   image: alleeex/serp-mssql:latest
+  #   container_name: "mssql"
+  #   user: root
+  #   environment:
+  #     SA_PASSWORD: "${DB2INST1_PASSWORD}"
+  #     ACCEPT_EULA: "Y"
+  #   ports:
+  #     - "5434:1433"
+  #   volumes:
+  #     - mssqlinst1:/var/opt/mssql
+  #   restart: unless-stopped
+
+  # postgresfstore:
+  #   <<: *resource-common
+  #   image: alleeex/serp-pgresf:latest
+  #   container_name: "postgresfstore"
+  #   ports:
+  #     - "5438:5432"
+  #   environment:
+  #     POSTGRES_USER: "${POSTGRES_USER}"
+  #     POSTGRES_PASSWORD: "${DB2INST1_PASSWORD}"
+  #     POSTGRES_DB: "${DBNAME}"
+  #   volumes:
+  #     - postgresinst1:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+  nrdapi:
+    image: alleeex/serp-nrdapi:latest
+    container_name: "nrdapi"
+    privileged: True
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+volumes:
+  data1-1:
+  data1-2:
+  data2-1:
+  data2-2:
+  data3-1:
+  data3-2:
+  # db2inst1:
+  # mssqlinst1:
+  # postgresinst1:

@@ -1,0 +1,22 @@
+*-----------------------------------------------------
+* Generated response file used by the DB2 Setup wizard
+* generation time: 27/10/21 15:21
+*-----------------------------------------------------
+*  Product Installation 
+PROD       = RUNTIME_CLIENT
+FILE       = /opt/ibm/db2/V11.5
+INSTALL_TYPE       = TYPICAL
+* ----------------------------------------------
+*  Instance properties           
+* ----------------------------------------------
+INSTANCE       = inst1
+inst1.TYPE       = client
+*  Instance-owning user
+inst1.NAME       = db2i
+inst1.GROUP_NAME       = db2ia
+inst1.HOME_DIRECTORY       = /home/db2i
+inst1.AUTOSTART       = NO
+*-----------------------------------------------
+*  Installed Languages 
+*-----------------------------------------------
+LANG       = EN

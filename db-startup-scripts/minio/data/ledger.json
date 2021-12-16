@@ -1,0 +1,8 @@
+{
+	"attributes": {
+		"schema": "{ \"return_info\": { \"schema_cols_to_enc\": \"\", \"schema_to_apply\": { \"fields\": [{ \"name\":\"spell_num\", \"nullable\":\"False\", \"type\":\"long\" }, { \"name\":\"epi_num\", \"nullable\":\"False\", \"type\":\"integer\" }, { \"name\":\"epi_start\", \"nullable\":\"False\", \"type\":\"date\" }, { \"name\":\"epi_end\", \"nullable\":\"False\", \"type\":\"date\" }, { \"name\":\"epi_duration\", \"nullable\":\"False\", \"type\":\"integer\" }, { \"name\":\"first_epi_in_spell\", \"nullable\":\"False\", \"type\":\"integer\" } ] }, \"schema_cols_to_rename\": { \"spell_num\":\"spell_num\", \"epi_end\":\"epi_end\" } }, \"schema_definition\": { \"fieldDef\": [ { \"column_Name\":\"spell_num\", \"dest_Col_Name\":\"renamed_spell_num\", \"length\":\"\" }, { \"column_Name\":\"epi_end\", \"dest_Col_Name\":\"renamed_epi_end\",  \"length\":\"\" } ] } }",
+		"pg_database_schema":"TESTSCHEMA"
+	},
+	"label":"testlabel",
+	"version":"testversion"
+}

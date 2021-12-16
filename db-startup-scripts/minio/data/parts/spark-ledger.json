@@ -1,0 +1,16 @@
+[{
+	"attributes": {
+		"targettablename":"pedw_spell_{classification}_{version}_{label}",
+		"targetclassification":"testtargetclass"
+	},
+	"classification":"testclass",
+	"version":"testv",
+	"label":"testlabel",
+	"location_details":"s3a://serp-sail/cvst/spark-workflow/dataset1/pedw_spell_part1.csv",
+	"location":"csv",
+	"group_count":"5?"
+},
+{
+	"location_details":"s3a://serp-sail/cvst/spark-workflow/dataset1/pedw_spell_part2.csv",
+	"location":"csv"
+}]

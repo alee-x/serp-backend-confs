@@ -1,0 +1,20 @@
+FROM minio/mc:latest
+
+RUN mkdir -p /testdata && mkdir -p /partdata && mkdir -p /statdata
+
+ENV MINIO_ROOT_USER=admin
+ENV MINIO_ROOT_PASSWORD=MyP4ssW0rd
+ENV MINIO_ACCESS_KEY=minio
+ENV MINIO_SECRET_KEY=minio1234
+ENV DEFAULT_MINIO_URL=127.0.0.1
+
+COPY data/*.csv testdata/
+COPY data/*.json testdata/
+COPY data/parts/* partdata/
+COPY data/statsfiles/* statdata/
+COPY create-buckets.sh .
+
+RUN chmod +x create-buckets.sh
+
+# ENTRYPOINT ["/bin/sh", "minio/mc"]
+ENTRYPOINT ["./create-buckets.sh"]

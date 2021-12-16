@@ -1,0 +1,32 @@
+{
+	"db_platform":"db2",
+	"database_name":"SAIL",
+	"schema_name":"SAIL0000V",
+	"table_name":"WDSD_MAIN",
+	"db_path_object_id": "idk",
+	"database_conn_id": "db2_prsail_conn",
+	"rabbit_queue":"dbscanner_extract_schema",
+	"rabbit_vhost":"db2_rmq"
+}
+
+{
+	"db_platform":"mssql",
+	"database_name":"SAIL",
+	"schema_name":"SAIL0000V",
+	"table_name":"WDSD_MAIN",
+	"db_path_object_id": "idk",
+	"database_conn_id": "thecesspit",
+	"rabbit_queue":"dbscanner_extract_schema",
+	"rabbit_vhost":"mssql_rmq"
+}
+
+{
+	"db_platform":"postgres",
+	"database_name":"SAIL",
+	"schema_name":"SAIL0000V",
+	"table_name":"wdsd_main",
+	"db_path_object_id": "idk",
+	"database_conn_id": "postgres_test",
+	"rabbit_queue":"dbscanner_extract_schema",
+	"rabbit_vhost":"postgres_rmq"
+}

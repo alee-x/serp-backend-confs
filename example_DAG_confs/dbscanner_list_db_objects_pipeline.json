@@ -1,0 +1,29 @@
+{
+	"db_platform":"db2",
+	"database_name":"SAIL",
+	"database_conn_id":"db2_prsail_conn",
+	"schemas_to_ignore":"",
+	"schemas_to_check":["SAIL0000V"],
+	"rabbit_queue":"dbscanner_list_objects",
+	"rabbit_vhost":"db2_rmq"
+}
+
+{
+	"db_platform":"mssql",
+	"database_name":"SAIL",
+	"database_conn_id":"thecesspit",
+	"schemas_to_ignore":"",
+	"schemas_to_check":["SAIL0000V"],
+	"rabbit_queue":"dbscanner_list_objects",
+	"rabbit_vhost":"mssql_rmq"
+}
+
+{
+	"db_platform":"postgres",
+	"database_name":"SAIL",
+	"database_conn_id":"postgres_test",
+	"schemas_to_ignore":"",
+	"schemas_to_check":["SAIL0000V"],
+	"rabbit_queue":"dbscanner_list_objects",
+	"rabbit_vhost":"postgres_rmq"
+}
